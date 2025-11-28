@@ -32,8 +32,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/myapp:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/myapp:latest
+            ghcr.io/abdelhakghribi/myapp:${{ github.sha }}  # ← lowercase
+            ghcr.io/abdelhakghribi/myapp:latest            # ← lowercase
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -42,6 +42,10 @@ jobs:
           cd apps/myapp
           # Update kustomization.yaml with the new tag
           sed -i "s#newTag: .*#newTag: \"${{ github.sha }}\"#g" kustomization.yaml
+          # Also ensure the image name in kustomization is lowercase
+          sed -i "s#newName: .*#newName: ghcr.io/abdelhakghribi/myapp#g" kustomization.yaml
+          # Update deployment.yaml to ensure it's lowercase
+          sed -i "s#image: ghcr.io/.*/myapp:.*#image: ghcr.io/abdelhakghribi/myapp:${{ github.sha }}#g" deployment.yaml
 
       - name: Commit updated manifests
         uses: stefanzweifel/git-auto-commit-action@v5
