@@ -15,9 +15,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: ghcr.io/abdelhakghribi/myapp:latest
+          image: nginx:alpine  # ← Public image for testing
           ports:
-            - containerPort: 8080
-          imagePullPolicy: Always
-      imagePullSecrets:
-        - name: ghcr-secret
+            - containerPort: 80
