@@ -5,4 +5,4 @@ resources:
 images:
   - name: myapp
     newTag: "latest"
-    newName: ghcr.io/AbdelhakGhribi/myapp
+    newName: ghcr.io/abdelhakghribi/myapp
