@@ -1,0 +1,8 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+
+images:
+  - name: myapp
+    newTag: "latest"
+    newName: ghcr.io/AbdelhakGhribi/myapp
